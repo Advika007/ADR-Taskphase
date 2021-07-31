@@ -13,11 +13,17 @@ kernal= np.ones((2,2),np.uint8)
 #in the parameters we define the size and data type of the kernal
 
 dilation=cv2.dilate(mask,kernal,iterations=2)
+#Dilation adds pixels to the boundaries of objects
 erosion=cv2.erode(mask,kernal,iterations=2)
+#Erosion removes pixels on the object boundaries.
 opening= cv2.morphologyEx(mask,cv2.MORPH_OPEN,kernal)
+#An erosion followed by a dilation
 closing= cv2.morphologyEx(mask,cv2.MORPH_CLOSE, kernal)
+#A dilation followed by an erosion
 mg= cv2.morphologyEx(mask,cv2.MORPH_GRADIENT, kernal)
+# It is difference between dilation and erosion of an image
 th= cv2.morphologyEx(mask,cv2.MORPH_TOPHAT,kernal)
+#It is difference between input image and opening
 
 titles=['image','mask','dilation','erosion','opening','closing','mg','th']
 images= [img, mask, dilation, erosion, opening, closing,mg,th]
